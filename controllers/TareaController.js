@@ -20,10 +20,10 @@ static async obtenerId(req, res) {
 static async crearTarea(req, res) {
     try {
         
-        let rest = TareaService.crearTarea(req.body);
+        let rest = await TareaService.crearTarea(req.body);
         res.json(rest);
     } catch (e) {
-        res.status(500).json({ error: "Error al crear la tarea" });
+        console.log(e)
     }
 }
 static async actualizarTarea(req, res) {
@@ -53,6 +53,19 @@ static async eliminarTarea(req, res) {
         
     }
 }
+    static async traerTareaCategoria( req, res) {
+        try{
+         let respTC= await TareaService.traerTareaCategoria()
+            res.json(respTC)
+        }
+        catch(e) {
+            //revisa error rutas
+        }
+    }
+
+    
+
+
 }
 module.exports =  TareaController;
 

@@ -9,8 +9,8 @@ let Categoria = sequelize.define('Categoria', {
         allowNull:false
     },
 },{
-    timestamps: true,
-    tableName: 'Categoria'
+    timestamps: false,
+    tableName: 'categoria'
 });
 
 

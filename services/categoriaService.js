@@ -1,12 +1,12 @@
 let categoria = require('../models/categoriaModel');
 
-class categoriaService { 
-    async obtenerCategoria() {
+class CategoriaService { 
+    static async obtenerCategoria() {
         try {
             let catego = await categoria.findAll();
             return catego;
         } catch (e) {
-            console.log("error");
+            console.log("error "+ e);
         }
     }
     static async obtenerId(id){
@@ -52,4 +52,4 @@ class categoriaService {
     }
     }
 
-module.exports = categoriaService;
+module.exports = CategoriaService;

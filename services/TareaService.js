@@ -1,4 +1,5 @@
 let Tarea = require('../models/TareaModel');
+let Categoria = require('../models/categoriaModel');
 class TareaService { 
     async obtenerT() {
         try {
@@ -20,10 +21,11 @@ class TareaService {
         }}
     static async crearTarea(datos){
         try {
-          let tareita =  Tarea.create(datos);
+          let tareita = await Tarea.create(datos);
           return tareita;
+
         } catch (error) {
-            console.log("tarea no creada");
+            console.log("tarea no creada " + error);
         }
     }
   static async actualizarTarea(id, datosActualizados) {
@@ -49,6 +51,23 @@ class TareaService {
            
         }
     }
+
+    static async traerTareaCategoria(){
+        try{
+           let rtarea = await Tarea.findAll({
+                include: {
+                    model: Categoria,
+                    attributes: ['id','nombre']
+                }
+            });
+            console.log("rtarea")
+            return (rtarea);
+        }
+        catch (e){
+            console.log("error al obtener tarea")
+        }
+    }
+
     }
 
 module.exports = TareaService;

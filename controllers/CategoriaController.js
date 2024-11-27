@@ -1,17 +1,16 @@
-let categoriaService = require("../services/categoriaService");
+let CategoriaService = require("../services/CategoriaService");
 class categoriaController{
 static async   traerCategoria(req, res) {
         try {
-            let categoriaService = new categoriaService();
-            let categoris=await categoriaService.obtenerCategoria();
-            res.json(categoris);
+            let categoriaService = await CategoriaService.obtenerCategoria();
+            res.json(categoriaService);
         } catch (e) {
-            res.json({e: "errrorrrrr"})
+            res.json({e: "errrorrrrr " + e})
         }
     }
 static async obtenerId(req, res) { 
     try {
-        let resultado = await categoriaService.obtenerId(req.params.id);
+        let resultado = await CategoriaService.obtenerId(req.params.id);
         res.json(resultado);
     } catch (e) {
         res.status(500).json({ error: "Error al obtener la categoria por ID" });
@@ -20,7 +19,7 @@ static async obtenerId(req, res) {
 static async crearCategoria(req, res) {
     try {
         
-        let rest = categoriaService.crearCategoria(req.body);
+        let rest = CategoriaService.crearCategoria(req.body);
         res.json(rest);
     } catch (e) {
         res.status(500).json({ error: "Error al crear la categoria" });
